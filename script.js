@@ -10,62 +10,61 @@ const num = '1234567890';
 const specials = ',.!@#$%^&*';
 const options = [lower, lower, lower, upper, upper, num, num, specials];
 
-function generatePassword () {
+function generatePassword() {
 
-let passwordChar = "";
-// Create user prompt to select password length
-let passwordLengthUser = window.prompt("How many characters would you like your password to be? Password must be between 8-128 characters.");
-passwordLengthUser = parseInt(passwordLengthUser);
+  let passwordChar = "";
+  // Create user prompt to select password length
+  let passwordLengthUser = window.prompt("How many characters would you like your password to be? Password must be between 8-128 characters.");
+  passwordLengthUser = parseInt(passwordLengthUser);
 
-if(passwordLengthUser < 8) {
-  alert("Password must have more than 7 characters!");
-  return "";
-};
+  if (passwordLengthUser < 8) {
+    alert("Password must have more than 7 characters!");
+    return "";
+  };
 
-if (passwordLengthUser > 128) {
-  alert("Password must not have more than 128 characters!");
-  return "";
-};
+  if (passwordLengthUser > 128) {
+    alert("Password must not have more than 128 characters!");
+    return "";
+  };
 
-// Creates confirm boolean for lowercase "yes or no"
-let lower = window.confirm("Would you like to add lowercase characters?");
+  // Creates confirm boolean for lowercase "yes or no"
+  let lowerq = window.confirm("Would you like to add lowercase characters?");
 
-if (lower) {
-  passwordChar += options.lower;
-};
+  if (lowerq) {
+    passwordChar += lower;
+  };
 
-// Create confrim boolenan for uppercase "yes or no"
-let upper = window.confirm("Would you like to add uppercase characters?");
+  // Create confrim boolenan for uppercase "yes or no"
+  let upperq = window.confirm("Would you like to add uppercase characters?");
 
-if (upper) {
-  passwordChar += options.upper;
-};
+  if (upperq) {
+    passwordChar += upper;
+  };
 
-// Create confirm boolean for numbers "yes or no"
-let num = window.confirm("Would you like to add numbers?");
+  // Create confirm boolean for numbers "yes or no"
+  let numq = window.confirm("Would you like to add numbers?");
 
-if (num) {
-  passwordChar += options.num;
-};
+  if (numq) {
+    passwordChar += num;
+  };
 
-// Create confirm boolean for special characters "yes or no"
-let specials = window.confirm("Would you like to add special characters?");
+  // Create confirm boolean for special characters "yes or no"
+  let specialsq = window.confirm("Would you like to add special characters?");
 
-if(specials) {
-  passwordChar += options.specials;
-};
+  if (specialsq) {
+    passwordChar += specials;
+  };
+  console.log(passwordChar);
 
-let opt, choose;
-let password = "";
-for ( let i = 0; i < 8; i++ ) {
-  opt = Math.floor(Math.random() * options.length);
-  choose = Math.floor(Math.random() * (options[opt].length));
-  password = password + options[opt][choose];
-  options.splice(opt, 1);
-}
-console.log(password);
+  let opt, choose;
+  let password = "";
+  for (let i = 0; i < passwordLengthUser; i++) {
+    opt = Math.floor(Math.random() * passwordChar.length);
+    password = password + passwordChar[opt];
+  }
+  console.log(password);
 
-return (password);
+  return (password);
 }
 
 // Write password to the #password input
